@@ -1,4 +1,4 @@
-# Docker container with tutorial notebooks
+# Docker container with RADICAL-Cybertools (RCT) tutorial notebooks
 
 ## Build container image
 
@@ -12,7 +12,7 @@ RCT Tutorials container is based on
 ## A. Run `docker-compose`
 
 It starts `rct-tutorials` container with auxiliary service(s), such as MongoDB,
-which is used by the RADICAL-Cybertools components.
+which is used by the RCT components.
 
 ```shell
 cd docker
