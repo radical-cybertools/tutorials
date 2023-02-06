@@ -1,12 +1,16 @@
 # Docker container with RADICAL-Cybertools (RCT) tutorial notebooks
 
-## Build container image
+## Get container image
 
 RCT Tutorials container is based on 
 [jupyter/minimal-notebook](https://github.com/jupyter/docker-stacks) image.
 
 ```shell
+# BUILD
 ./docker/build.sh
+
+# OR PULL
+docker pull radicalcybertools/tutorials:latest
 ```
 
 ## A. Run `docker-compose`

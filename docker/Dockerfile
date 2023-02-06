@@ -9,8 +9,9 @@ ENV JUPYTER_ENABLE_LAB=yes
 
 USER root
 
-# system packages if needed
-#   RUN apt-get update -y && apt-get install -y <list of packages>
+# system packages
+RUN apt-get update -y && \
+    apt-get install -y curl gnupg
 
 # General jupyter deps
 
@@ -32,14 +33,16 @@ RUN printf '\n\
 } \n\
 ' > $(jupyter --config-dir)/jupyter_config.json
 
+# Conda environment for RCT components
+
+RUN mamba create -y -n rct \
+    python=${PY_VER} \
+    ipykernel \
+    radical.pilot \
+    radical.entk
+
 # Tutorials
 
 WORKDIR /tutorials/
 COPY --chown=${NB_UID}:${NB_GID} ./ ./
 
-# Conda environment for RCT components: RADICAL-Pilot (RP)
-
-RUN mamba create -y -n rct \
-    python=${PY_VER} \
-    ipykernel \
-    radical.pilot
