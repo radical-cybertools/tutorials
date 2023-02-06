@@ -56,7 +56,7 @@ docker exec rct-mongodb bash -c \
 Run container with network:
 
 ```shell
-docker run --rm -it -p 8888:8888 --network rct-network rct-tutorials
+docker run --rm -it -p 8888:8888 --network rct-network radicalcybertools/tutorials
 ```
 
 NOTE: if it is required to work with tutorials located outside the container,
