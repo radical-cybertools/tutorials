@@ -5,21 +5,36 @@
 RCT Tutorials container is based on 
 [jupyter/minimal-notebook](https://github.com/jupyter/docker-stacks) image.
 
-```shell
-# BUILD
-./docker/build.sh
+### Build container
 
-# OR PULL
+**Tutorial name** is a subdirectory within `/tutorials` with a target notebook.
+
+```shell
+# provide a tutorial name either as an argument OR with the env variable:
+#   export RCT_TUTORIAL_NAME=radical-entk
+./docker/build.sh [-n tutorial_name]
+```
+
+### Pull container
+
+```shell
+# use a specific tag to pull a corresponding container ("latest" is default)
 docker pull radicalcybertools/tutorials:latest
 ```
 
 ## A. Run `docker-compose`
 
-It starts `rct-tutorials` container with auxiliary service(s), such as MongoDB,
-which is used by the RCT components.
+It starts `rct-tutorials` container with the auxiliary service MongoDB,
+which is used by the RCT components as part of a communication layer.
 
 ```shell
 cd docker
+# use a specific tag to pull a corresponding container by setting env variable:
+#   export RCT_TUTORIAL_TAG=entk-intro-2023
+#
+# if container with defined tag doesn't exist, then it will be built, thus
+# provide the name for a tutorial:
+#   export RCT_TUTORIAL_NAME=radical-entk
 
 docker compose up -d
 docker compose logs -f rct-tutorials
@@ -50,7 +65,8 @@ docker run -d --hostname mongodb --name rct-mongodb -p 27017:27017 \
            -e MONGO_INITDB_PASSWORD=guest \
            -e MONGO_INITDB_DATABASE=default \
            --network rct-network mongo:4.4
-
+```
+```shell
 docker exec rct-mongodb bash -c \
   "mongo --authenticationDatabase admin -u root_user -p root_pass default \
    --eval \"db.createUser({user: 'guest', pwd: 'guest', \
