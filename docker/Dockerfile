@@ -11,9 +11,9 @@ USER root
 
 # system packages
 RUN apt-get update -y && \
-    apt-get install -y curl gnupg
+    apt-get install -y bc curl gnupg
 
-# General jupyter deps
+# general jupyter deps
 
 RUN mamba install -y -n base -c conda-forge \
     nb_conda_kernels \
@@ -23,7 +23,7 @@ RUN mamba install -y -n base -c conda-forge \
 
 USER ${NB_UID}
 
-# Config for nb_conda_kernels
+# config for nb_conda_kernels
 
 RUN printf '\n\
 { \n\
@@ -33,7 +33,11 @@ RUN printf '\n\
 } \n\
 ' > $(jupyter --config-dir)/jupyter_config.json
 
-# Conda environment for RCT components
+# setup
+
+ARG TUTORIAL_NAME=default
+
+# conda environment for RCT components
 
 RUN mamba create -y -n rct \
     python=${PY_VER} \
@@ -41,8 +45,8 @@ RUN mamba create -y -n rct \
     radical.pilot \
     radical.entk
 
-# Tutorials
+# tutorials
 
 WORKDIR /tutorials/
-COPY --chown=${NB_UID}:${NB_GID} ./ ./
+COPY --chown=${NB_UID}:${NB_GID} ./${TUTORIAL_NAME} ./
 
