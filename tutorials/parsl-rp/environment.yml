@@ -1,0 +1,6 @@
+name: conda-env-rct-py
+channel:
+  - conda-forge
+dependencies:
+  - nwchem
+  - openmpi
