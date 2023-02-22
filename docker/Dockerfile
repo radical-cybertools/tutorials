@@ -50,3 +50,6 @@ RUN mamba create -y -n rct \
 WORKDIR /tutorials/
 COPY --chown=${NB_UID}:${NB_GID} ./${TUTORIAL_NAME} ./
 
+RUN if [[ -f ./environment.yml ]] ; then \
+       mamba env update -n rct -f ./environment.yml ; \
+    fi
