@@ -108,8 +108,8 @@ environment for a tutorial development.
        ./docker/build.sh -n default -t dev
 
 2. Start auxiliary services if needed, as described in 
-   [Section 2.B](#2b-run-container-image-with-mongodb-service-manually), 
-   without starting/running tutorials container image itself;
+   [Section 2B](#2b-run-container-image-with-mongodb-service-manually), 
+   without running tutorials container image itself;
 3. Run the basic container with the **mounted** tutorials source directory:
 
        docker run --rm -it -p 8888:8888 --network rct-network \
@@ -123,6 +123,6 @@ environment for a tutorial development.
    following templates located in `/default`;
 6. Start creating Jupyter notebooks.
 
-Newly created tutorial (with the corresponding notebooks) will be preserved 
-locally after container being shut down.
+**Created tutorial (with the corresponding notebooks) will be preserved locally 
+after container being shut down.**
 
