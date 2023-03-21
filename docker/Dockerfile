@@ -10,11 +10,14 @@ ENV JUPYTER_ENABLE_LAB=yes
 USER root
 
 # system packages
-RUN apt-get update -y && \
-    apt-get install -y bc curl gnupg
+RUN apt-get update  -y && \
+    apt-get install -y curl gnupg sudo
+
+# add user to sudoers
+RUN adduser ${NB_USER} sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/no_pass
 
 # general jupyter deps
-
 RUN mamba install -y -n base -c conda-forge \
     nb_conda_kernels \
  && mamba clean -a -f -y \
@@ -24,7 +27,6 @@ RUN mamba install -y -n base -c conda-forge \
 USER ${NB_UID}
 
 # config for nb_conda_kernels
-
 RUN printf '\n\
 { \n\
   "CondaKernelSpecManager": { \n\
@@ -33,12 +35,9 @@ RUN printf '\n\
 } \n\
 ' > $(jupyter --config-dir)/jupyter_config.json
 
-# setup
-
 ARG TUTORIAL_NAME=default
 
 # conda environment for RCT components
-
 RUN mamba create -y -n rct \
     python=${PY_VER} \
     ipykernel \
@@ -46,10 +45,14 @@ RUN mamba create -y -n rct \
     radical.entk
 
 # tutorials
-
 WORKDIR /tutorials/
 COPY --chown=${NB_UID}:${NB_GID} ./${TUTORIAL_NAME} ./
 
-RUN if [[ -f ./environment.yml ]] ; then \
-       mamba env update -n rct -f ./environment.yml ; \
+RUN if [[ -f ./setup.sh ]] ; then \
+       bash setup.sh && rm setup.sh ; \
     fi
+
+RUN if [[ -f ./environment.yml ]] ; then \
+       mamba env update -n rct -f ./environment.yml && rm environment.yml ; \
+    fi
+

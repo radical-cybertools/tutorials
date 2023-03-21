@@ -6,7 +6,7 @@ services:
     image: radicalcybertools/tutorials:${RCT_TUTORIAL_TAG:-latest}
     container_name: rct-tutorials
     build:
-      context: ../tutorials/
+      context: ../src/
       dockerfile: ../docker/Dockerfile
       args:
         - TUTORIAL_NAME=${RCT_TUTORIAL_NAME:-default}
@@ -52,3 +52,4 @@ services:
 networks:
   rct-network:
     name: rct-network
+
