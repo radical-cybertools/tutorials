@@ -108,7 +108,7 @@ environment for a tutorial development.
        ./docker/build.sh -n default -t dev
 
 2. Start auxiliary services if needed, as described in 
-   [Section 2.B](#2.b.-run-container-image-with-mongodb-service-manually), 
+   [Section 2.B](#2b-run-container-image-with-mongodb-service-manually), 
    without starting/running tutorials container image itself;
 3. Run the basic container with the **mounted** tutorials source directory:
 
