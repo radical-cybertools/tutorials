@@ -27,4 +27,5 @@ docker build \
     -t "$TAG" \
     --build-arg TUTORIAL_NAME="$NAME"\
     -f "$RCT_BASE_DIR/docker/Dockerfile" \
-    "$RCT_BASE_DIR/tutorials/"
+    "$RCT_BASE_DIR/src/"
+
