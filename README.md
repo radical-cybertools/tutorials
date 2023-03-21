@@ -123,6 +123,6 @@ environment for a tutorial development.
    following templates located in `/default`;
 6. Start creating Jupyter notebooks.
 
-**Created tutorial (with the corresponding notebooks) will be preserved locally 
-after container being shut down.**
+Created tutorial (with the corresponding notebooks) will be preserved locally 
+after container being shut down.
 
