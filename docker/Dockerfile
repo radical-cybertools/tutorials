@@ -36,13 +36,15 @@ RUN printf '\n\
 ' > $(jupyter --config-dir)/jupyter_config.json
 
 ARG TUTORIAL_NAME=default
+ENV RADICAL_PILOT_DBURL=mongodb://guest:guest@mongodb:27017/default
 
 # conda environment for RCT components
 RUN mamba create -y -n rct \
     python=${PY_VER} \
     ipykernel \
     radical.pilot \
-    radical.entk
+    radical.entk \
+    radical.analytics
 
 # tutorials
 WORKDIR /tutorials/
