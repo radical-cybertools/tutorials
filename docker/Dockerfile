@@ -5,7 +5,11 @@ ARG PY_VER=3.9
 
 FROM --platform=${BUILDPLATFORM} jupyter/minimal-notebook:python-${PY_VER}
 
+ARG TUTORIAL_NAME=default
+ARG MONGODB_URL=mongodb://guest:guest@mongodb:27017/default
+
 ENV JUPYTER_ENABLE_LAB=yes
+ENV RADICAL_PILOT_DBURL=${MONGODB_URL}
 
 USER root
 
@@ -34,9 +38,6 @@ RUN printf '\n\
   } \n\
 } \n\
 ' > $(jupyter --config-dir)/jupyter_config.json
-
-ARG TUTORIAL_NAME=default
-ENV RADICAL_PILOT_DBURL=mongodb://guest:guest@mongodb:27017/default
 
 # conda environment for RCT components
 RUN mamba create -y -n rct \
