@@ -103,9 +103,10 @@ docker stop rct-mongodb
 This subsection outlines steps necessary to take for setting up a corresponding 
 environment for a tutorial development.
 
-1. Build a basic container for development:
+1. Build a basic container for development (`devel`-branches of the RADICAL
+   stack):
 
-       ./docker/build.sh -n default -t dev
+       ./docker/build.sh -n devel -t devel
 
 2. Start auxiliary services if needed, as described in 
    [Section 2B](#2b-run-container-image-with-mongodb-service-manually), 
@@ -114,7 +115,7 @@ environment for a tutorial development.
 
        docker run --rm -it -p 8888:8888 --network rct-network \
                   --mount type=bind,source="$(pwd)/src",target=/tutorials \
-                  radicalcybertools/tutorials:dev
+                  radicalcybertools/tutorials:devel
 
 4. Access Jupyter server with the provided URL 
    (e.g., `http://127.0.0.1:8888/lab?token=<token>`);
