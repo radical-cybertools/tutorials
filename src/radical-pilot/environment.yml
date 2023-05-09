@@ -1,6 +1,5 @@
 channel:
   - conda-forge
 dependencies:
-  - nwchem
   - openmpi
 
