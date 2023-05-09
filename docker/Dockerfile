@@ -21,31 +21,28 @@ RUN apt-get update  -y && \
 RUN adduser ${NB_USER} sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/no_pass
 
-# general jupyter deps
-RUN mamba install -y -n base -c conda-forge \
-    nb_conda_kernels \
+# config kernel(s)
+RUN mamba update -n base -y -c conda-forge conda \
  && mamba clean -a -f -y \
+ && printf '#!/bin/bash \n\
+\n\
+eval "$(conda shell.posix hook)" \n\
+exec "$@" \n\
+' > "${CONDA_DIR}/bin/kernelstart.sh" \
+ && chmod +x "${CONDA_DIR}/bin/kernelstart.sh" \
+ && sed -i 's/\[/\[\"kernelstart.sh\",/g' \
+    "${CONDA_DIR}/share/jupyter/kernels/python3/kernel.json" \
  && fix-permissions "${CONDA_DIR}" \
  && fix-permissions "/home/${NB_USER}"
 
 USER ${NB_UID}
 
-# config for nb_conda_kernels
-RUN printf '\n\
-{ \n\
-  "CondaKernelSpecManager": { \n\
-    "kernelspec_path": "--user" \n\
-  } \n\
-} \n\
-' > $(jupyter --config-dir)/jupyter_config.json
-
-# conda environment for RCT components
-RUN mamba create -y -n rct \
-    python=${PY_VER} \
-    ipykernel \
+# install RCT components (base conda env)
+RUN mamba install -y -n base \
     radical.pilot \
     radical.entk \
-    radical.analytics
+    radical.analytics \
+ && mamba clean -a -f -y
 
 # tutorials
 WORKDIR /tutorials/
@@ -56,6 +53,6 @@ RUN if [[ -f ./setup.sh ]] ; then \
     fi
 
 RUN if [[ -f ./environment.yml ]] ; then \
-       mamba env update -n rct -f ./environment.yml && rm environment.yml ; \
+       mamba env update -n base -f ./environment.yml && rm environment.yml ; \
     fi
 
