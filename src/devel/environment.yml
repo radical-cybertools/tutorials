@@ -1,4 +1,3 @@
-name: conda-env-rct-py
 dependencies:
   - openmpi
   - pip
