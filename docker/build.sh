@@ -2,7 +2,7 @@
 
 RCT_BASE_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )/../" &> /dev/null && pwd 2> /dev/null; )"
 
-while getopts ":n:t:p:" option; do
+while getopts ":n:t:p:c" option; do
    case $option in
       n) # tutorial name
          NAME=$OPTARG;;
@@ -10,6 +10,8 @@ while getopts ":n:t:p:" option; do
          TAG=$OPTARG;;
       p) # build platform
          PLATFORM=$OPTARG;;
+      c) # no cache
+         NO_CACHE="--no-cache";;
      \?) # unknown option
          echo "Unknown option $OPTARG";;
    esac
@@ -29,7 +31,7 @@ if [[ -z $PLATFORM ]]; then
 fi
 
 echo "Build docker container $TAG (name: ${NAME:-n/a})"
-docker build \
+docker build $NO_CACHE \
     -t "$TAG" \
     --build-arg TUTORIAL_NAME="$NAME" \
     --build-arg BUILDPLATFORM="$PLATFORM" \
