@@ -3,4 +3,9 @@ channel:
 dependencies:
   - nwchem
   - openmpi
+  - pip
+  - setuptools
+  - wheel
+  - pip:
+      - git+https://github.com/AymenFJA/parsl.git@master
 
