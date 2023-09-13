@@ -7,12 +7,12 @@
 
 ## 1. Quickstart
 
-RCT Tutorials container is based on 
+The RCT Tutorials container is based on 
 [jupyter/minimal-notebook](https://github.com/jupyter/docker-stacks) image.
-We have prepared a container image with all the latest tutorials available 
-within this repository, and this image is uploaded into DockerHub
-(`radicalcybertools/tutorials:latest`). With the following commands it will be
-pulled from there and start running locally (**NOTE**: `docker` and 
+We prepared a container image with all the latest tutorials in this 
+repository, and uploaded this image to DockerHub
+(`radicalcybertools/tutorials:latest`). The following commands
+pull and run the RCT Tutorials container locally (**NOTE**: `docker` and 
 `docker-compose` are required to be installed locally):
 
 ```shell
