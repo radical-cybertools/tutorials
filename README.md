@@ -1,14 +1,33 @@
 # Docker container with RADICAL-Cybertools (RCT) tutorial notebooks
 
-## 1. Get container image
+* [Quickstart](#1-quickstart)
+* [Get container image](#2-get-container-image)
+* [Run container image](#3-run-container-image)
+* [For tutorial developers](#4-for-tutorial-developers)
 
-(*) RCT Tutorials container is based on 
+## 1. Quickstart
+
+The RCT Tutorials container is based on 
 [jupyter/minimal-notebook](https://github.com/jupyter/docker-stacks) image.
+We prepared a container image with all the latest tutorials in this 
+repository, and uploaded this image to DockerHub
+(`radicalcybertools/tutorials:latest`). The following commands
+pull and run the RCT Tutorials container locally (**NOTE**: `docker` and 
+`docker-compose` are required to be installed locally):
+
+```shell
+wget https://raw.githubusercontent.com/radical-cybertools/tutorials/main/docker/docker-compose.yaml
+export RCT_TUTORIAL_TAG=latest
+docker compose up -d
+docker compose logs -f rct-tutorials
+```
+
+## 2. Get container image
 
 **To have RCT Tutorials container image locally it should be either BUILT or 
 PULLED from DockerHub.**
 
-### 1.A. Build container
+### 2.A. Build container
 
 **Tutorial name** is a subdirectory within `/src` with the target notebook(s).
 
@@ -20,16 +39,16 @@ PULLED from DockerHub.**
 ./docker/build.sh [-n tutorial_name] [-t tag]
 ```
 
-### 1.B. Pull container
+### 2.B. Pull container
 
 ```shell
 # use a specific tag to pull a corresponding container ("latest" is default)
 docker pull radicalcybertools/tutorials:latest
 ```
 
-## 2. Run container image
+## 3. Run container image
 
-### 2.A. Run `docker-compose`
+### 3.A. Run `docker-compose`
 
 It starts `rct-tutorials` container with the auxiliary service MongoDB,
 which is used by the RCT components as part of a communication layer.
@@ -50,7 +69,7 @@ docker compose logs -f rct-tutorials
 #    docker compose rm -f
 ```
 
-### 2.B. Run container image with MongoDB service manually
+### 3.B. Run container image with MongoDB service manually
 
 These steps do the same as `docker-compose`, but all necessary commands are
 executed manually.
@@ -98,7 +117,7 @@ docker stop rct-mongodb
 #    docker rm -f rct-mongodb
 ```
 
-## 3. For tutorial developers
+## 4. For tutorial developers
 
 This subsection outlines steps necessary to take for setting up a corresponding 
 environment for a tutorial development.
@@ -109,7 +128,7 @@ environment for a tutorial development.
        ./docker/build.sh -n devel -t devel
 
 2. Start auxiliary services if needed, as described in 
-   [Section 2B](#2b-run-container-image-with-mongodb-service-manually), 
+   [Section 3B](#3b-run-container-image-with-mongodb-service-manually), 
    without running tutorials container image itself;
 3. Run the basic container with the **mounted** tutorials source directory:
 
