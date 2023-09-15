@@ -52,5 +52,4 @@ services:
 networks:
   rct-network:
     name: rct-network
-    external: true
 
