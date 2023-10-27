@@ -1,12 +1,5 @@
+channel:
+  - conda-forge
 dependencies:
   - openmpi
-  - pip
-  - setuptools
-  - wheel
-  - pip:
-      - radical.utils
-      - radical.saga
-      - radical.pilot
-      - radical.entk
-      - radical.analytics
 

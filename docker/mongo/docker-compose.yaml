@@ -6,8 +6,8 @@ services:
     image: radicalcybertools/tutorials:${RCT_TUTORIAL_TAG:-latest}
     container_name: rct-tutorials
     build:
-      context: ../src/
-      dockerfile: ../docker/Dockerfile
+      context: ../../src/
+      dockerfile: ../docker/mongo/Dockerfile
       args:
         - TUTORIAL_NAME=${RCT_TUTORIAL_NAME:-default}
     ports:

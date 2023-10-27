@@ -6,7 +6,10 @@ ARG PY_VER=3.9
 FROM --platform=${BUILDPLATFORM} jupyter/minimal-notebook:python-${PY_VER}
 
 ARG TUTORIAL_NAME=default
+ARG MONGODB_URL=mongodb://guest:guest@mongodb:27017/default
+
 ENV JUPYTER_ENABLE_LAB=yes
+ENV RADICAL_PILOT_DBURL=${MONGODB_URL}
 
 USER root
 
@@ -36,10 +39,13 @@ exec "$@" \n\
 USER ${NB_UID}
 
 # install RCT components (base conda env)
+# (*) latest versions with MongoDB requirement
 RUN mamba install -y -n base \
-    radical.pilot \
-    radical.entk \
-    radical.analytics \
+    radical.utils=1.33 \
+    radical.saga=1.36 \
+    radical.pilot=1.37 \
+    radical.entk=1.37 \
+    radical.analytics=1.34 \
  && mamba clean -a -f -y
 
 # tutorials
