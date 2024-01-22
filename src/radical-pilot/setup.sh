@@ -1,13 +1,8 @@
 #!/bin/bash
 
-sudo apt-get update  -y && \
-sudo apt-get install -y subversion
+RADICAL_PILOT_TARBALL_URL="\
+https://api.github.com/repos/radical-cybertools/radical.pilot/tarball/master"
 
-TUTORIALS_BASE_URL="\
-https://github.com/radical-cybertools/radical.pilot/\
-branches/master/docs/source"
-
-echo "Export tutorials from $TUTORIALS_BASE_URL"
-svn export --quiet --force "$TUTORIALS_BASE_URL/getting_started.ipynb" .
-svn export --quiet --force "$TUTORIALS_BASE_URL/tutorials" .
+curl -sL $RADICAL_PILOT_TARBALL_URL | \
+  tar --transform='s/.*\///' --wildcards -xz '*/docs/source/**.ipynb'
 
