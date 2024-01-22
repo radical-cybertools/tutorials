@@ -2,4 +2,17 @@
 
 set -ex
 
-. src/latest/setup.sh
+for tutorial in radical-pilot radical-entk parsl-rp deepdrivemd; do
+
+    cd "src/$tutorial" || true
+
+    if [[ -f ./setup.sh ]] ; then
+        bash setup.sh && rm ./setup.sh ;
+    fi
+
+    if [[ -f ./environment.yml ]] ; then
+        mamba env update -f ./environment.yml && rm environment.yml ;
+    fi
+
+done
+
