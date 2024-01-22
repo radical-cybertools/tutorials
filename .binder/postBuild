@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -ex
+
+. src/latest/setup.sh
