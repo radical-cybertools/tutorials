@@ -2,9 +2,10 @@
 
 set -ex
 
+WORK_DIR="$PWD"
 for tutorial in radical-pilot radical-entk parsl-rp deepdrivemd; do
 
-    cd "src/$tutorial" || true
+    cd "$WORK_DIR/src/$tutorial" || true
 
     if [[ -f ./setup.sh ]] ; then
         bash setup.sh && rm ./setup.sh ;
