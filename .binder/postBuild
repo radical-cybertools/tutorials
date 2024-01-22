@@ -8,7 +8,7 @@ for tutorial in radical-pilot radical-entk parsl-rp deepdrivemd; do
     cd "$WORK_DIR/src/$tutorial" || true
 
     if [[ -f ./setup.sh ]] ; then
-        bash setup.sh && rm ./setup.sh ;
+        rm ./setup.sh ;
     fi
 
     if [[ -f ./environment.yml ]] ; then
