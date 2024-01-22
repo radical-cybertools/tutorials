@@ -3,12 +3,12 @@
 set -ex
 
 WORK_DIR="$PWD"
-for tutorial in radical-pilot radical-entk parsl-rp deepdrivemd; do
+for tutorial in radical-pilot radical-entk parsl-rp deepdrivemd seavea-hackathon; do
 
     cd "$WORK_DIR/src/$tutorial" || true
 
     if [[ -f ./setup.sh ]] ; then
-        rm ./setup.sh ;
+        bash setup.sh && rm ./setup.sh ;
     fi
 
     if [[ -f ./environment.yml ]] ; then
