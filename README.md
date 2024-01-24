@@ -2,6 +2,12 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/radical-cybertools/tutorials/fix/mybinder)
 
+> [!IMPORTANT]
+> The [Binder](https://mybinder.readthedocs.io) service allows to run and to
+> test provided notebooks, but user should **not** expect the real performance 
+> out of it. If the performance is the case then please use a corresponding 
+> docker container and run it locally.
+
 * [Quickstart](#1-quickstart)
 * [Build container locally](#2-build-container-locally)
 * [For tutorial developers](#3-for-tutorial-developers)
