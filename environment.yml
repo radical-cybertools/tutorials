@@ -9,9 +9,4 @@ dependencies:
   - wheel
   - nwchem
   - pip:
-      - git+https://github.com/radical-cybertools/radical.utils.git@devel
-      - git+https://github.com/radical-cybertools/radical.saga.git@devel
-      - git+https://github.com/radical-cybertools/radical.pilot.git@devel
-      - git+https://github.com/radical-cybertools/radical.entk.git@devel
-      - git+https://github.com/radical-cybertools/radical.analytics.git@devel
-      - git+https://github.com/AymenFJA/parsl.git@master
+      - parsl
