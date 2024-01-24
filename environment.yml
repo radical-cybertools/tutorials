@@ -10,3 +10,8 @@ dependencies:
   - nwchem
   - pip:
       - parsl
+      - git+https://github.com/radical-cybertools/radical.utils.git@devel
+      - git+https://github.com/radical-cybertools/radical.saga.git@devel
+      - git+https://github.com/radical-cybertools/radical.pilot.git@devel
+      - git+https://github.com/radical-cybertools/radical.entk.git@devel
+      - git+https://github.com/radical-cybertools/radical.analytics.git@devel
