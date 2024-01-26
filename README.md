@@ -3,10 +3,11 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/radical-cybertools/tutorials/fix/mybinder)
 
 > [!IMPORTANT]
-> The [Binder](https://mybinder.readthedocs.io) service allows to run and to
-> test provided notebooks, but user should **not** expect the real performance 
-> out of it. If the performance is the case then please use a corresponding 
-> docker container and run it locally.
+> [Binder](https://mybinder.readthedocs.io) lets you run and test our RCT 
+> notebooks. You should **not** expect Binder to match the performance 
+> achievable by RCT on local or high performance computing (HPC) platforms. 
+> If performance is a consideration, please consider executing our RCT Docker 
+> container locally or in a suitable HPC environment.
 
 * [Quickstart](#1-quickstart)
 * [Build container locally](#2-build-container-locally)
