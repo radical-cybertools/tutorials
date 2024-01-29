@@ -1,5 +1,14 @@
 # Docker container with RADICAL-Cybertools (RCT) tutorial notebooks
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/radical-cybertools/tutorials/main)
+
+> [!IMPORTANT]
+> [Binder](https://mybinder.readthedocs.io) lets you run and test our RCT 
+> notebooks. You should **not** expect Binder to match the performance 
+> achievable by RCT on local or high performance computing (HPC) platforms. 
+> If performance is a consideration, please consider executing our RCT Docker 
+> container locally or in a suitable HPC environment.
+
 * [Quickstart](#1-quickstart)
 * [Build container locally](#2-build-container-locally)
 * [For tutorial developers](#3-for-tutorial-developers)

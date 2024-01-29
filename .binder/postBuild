@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -ex
+
+TUTORIALS_LIST=(\
+ "radical-pilot" \
+ "radical-entk" \
+ "parsl-rp" \
+ "deepdrivemd" \
+ "seavea-hackathon" \
+)
+
+WORK_DIR="$PWD"
+for tutorial in "${TUTORIALS_LIST[@]}" ; do
+
+    cd "$WORK_DIR/src/$tutorial" || true
+
+    if [[ -f ./setup.sh ]] ; then
+        bash setup.sh && rm ./setup.sh ;
+    fi
+
+    if [[ -f ./environment.yml ]] ; then
+        mamba env update -f ./environment.yml && rm environment.yml ;
+    fi
+
+done
+

@@ -8,7 +8,14 @@ mkdir tutorials_src; cd tutorials_src || true
 curl -sL $TUTORIALS_TARBALL_URL | \
   tar --strip-components=2 --wildcards -xz '*/src/*'
 
-for tutorial in radical-pilot radical-entk parsl-rp deepdrivemd; do
+TUTORIALS_LIST=(\
+ "radical-pilot" \
+ "radical-entk" \
+ "parsl-rp" \
+ "deepdrivemd" \
+)
+
+for tutorial in "${TUTORIALS_LIST[@]}"; do
 
     mv "$WORK_DIR/tutorials_src/$tutorial" "$WORK_DIR/$tutorial" ;
     cd "$WORK_DIR/$tutorial" || true

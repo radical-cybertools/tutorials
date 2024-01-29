@@ -1,0 +1,15 @@
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - openmpi
+  - pandas
+  - pip
+  - setuptools
+  - wheel
+  - radical.utils
+  - radical.saga
+  - radical.pilot
+  - radical.entk
+  - radical.analytics
+
