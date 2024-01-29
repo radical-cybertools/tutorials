@@ -1,6 +1,6 @@
 # Docker container with RADICAL-Cybertools (RCT) tutorial notebooks
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/radical-cybertools/tutorials/fix/mybinder)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/radical-cybertools/tutorials/main)
 
 > [!IMPORTANT]
 > [Binder](https://mybinder.readthedocs.io) lets you run and test our RCT 
