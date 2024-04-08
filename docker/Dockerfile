@@ -12,7 +12,7 @@ USER root
 
 # system packages
 RUN apt-get update  -y && \
-    apt-get install -y curl gnupg sudo
+    apt-get install -y curl gnupg jq sudo
 
 # add user to sudoers
 RUN adduser ${NB_USER} sudo
@@ -40,7 +40,8 @@ RUN mamba install -y -n base \
     radical.pilot \
     radical.entk \
     radical.analytics \
- && mamba clean -a -f -y
+ && mamba clean -a -f -y \
+ && pip install psij-python
 
 # tutorials
 WORKDIR /tutorials/

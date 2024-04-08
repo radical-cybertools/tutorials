@@ -8,8 +8,9 @@ dependencies:
   - setuptools
   - wheel
   - radical.utils
-  - radical.saga
   - radical.pilot
   - radical.entk
   - radical.analytics
+  - pip:
+      - psij-python
 
