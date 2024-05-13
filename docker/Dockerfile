@@ -35,13 +35,9 @@ exec "$@" \n\
 
 USER ${NB_UID}
 
-# install RCT components (base conda env)
-RUN mamba install -y -n base \
-    radical.pilot \
-    radical.entk \
-    radical.analytics \
- && mamba clean -a -f -y \
- && pip install psij-python
+# install RCT components
+RUN eval "$(conda shell.posix hook)" \
+ && pip install radical.pilot radical.entk radical.analytics
 
 # tutorials
 WORKDIR /tutorials/
