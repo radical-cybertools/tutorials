@@ -1,0 +1,5 @@
+channel:
+  - conda-forge
+dependencies:
+  - openmpi
+
