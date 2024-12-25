@@ -1,5 +1,7 @@
 name: Deploy RADICAL-Tutorials container
+# https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
 on:
+  # https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event
   repository_dispatch:
     types: [ deploy-on-demand ]
   workflow_call:
