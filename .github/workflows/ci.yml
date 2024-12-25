@@ -1,9 +1,5 @@
 name: Test container build and tutorials
 on:
-  # pull_request is used for test purposes only
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - main
@@ -34,6 +30,8 @@ jobs:
       with:
         name: ${{ env.TUTORIAL_IMAGE_NAME }}
         path: /tmp/${{ env.TUTORIAL_IMAGE_NAME }}.tar
+        retention-days: 1
+        overwrite: true
 
   tests:
     name: Test tutorials from docker container
@@ -55,12 +53,14 @@ jobs:
         docker load --input /tmp/${{ env.TUTORIAL_IMAGE_NAME }}.tar
         docker image ls -a
     - name: Run tutorials
+      timeout-minutes: 15
       run: |
         docker run ${{ env.TUTORIAL_TAG }} bash -c "\
         jupyter nbconvert --clear-output --inplace ${{ env.TARGET_PATH }} && \
         jupyter nbconvert --to notebook --execute --inplace ${{ env.TARGET_PATH }}"
 
   deploy:
+    name: Push container to DockerHub
     needs: tests
     uses: ./.github/workflows/deploy.yml
     secrets: inherit

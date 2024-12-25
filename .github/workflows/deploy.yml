@@ -1,5 +1,7 @@
 name: Deploy RADICAL-Tutorials container
 on:
+  repository_dispatch:
+    types: [ deploy-on-demand ]
   workflow_call:
     secrets:
       DOCKERHUB_USERNAME:
