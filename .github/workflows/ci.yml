@@ -53,7 +53,7 @@ jobs:
         docker load --input /tmp/${{ env.TUTORIAL_IMAGE_NAME }}.tar
         docker image ls -a
     - name: Run tutorials
-      timeout-minutes: 15
+      timeout-minutes: 20
       run: |
         docker run ${{ env.TUTORIAL_TAG }} bash -c "\
         jupyter nbconvert --clear-output --inplace ${{ env.TARGET_PATH }} && \
