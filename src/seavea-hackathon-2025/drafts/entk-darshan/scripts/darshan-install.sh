@@ -13,7 +13,7 @@ SCRIPTS_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )/" &> /dev/null \
 
 (sudo apt-get update  -y && \
  sudo apt-get install -y \
-      autoconf build-essential cmake libtool tar) \
+      autoconf build-essential cmake libtool libz-dev tar) \
  &> /dev/null || true
 
 DARSHAN_VER=3.4.6
