@@ -12,8 +12,6 @@ FROM --platform=${BUILDPLATFORM} ${REGISTRY}/${OWNER}/minimal-notebook:${IMAGE_T
 ARG TUTORIAL_NAME=default
 
 ENV JUPYTER_ENABLE_LAB=yes
-ENV JUPYTER_SERVERAPP_LOG_LEVEL=40
-ENV JUPYTER_DISABLE_FILE_VALIDATION=1
 ENV MAMBA_ROOT_PREFIX=${CONDA_DIR}
 
 USER root
@@ -32,19 +30,23 @@ RUN conda update -n base -y mamba libmamba libmambapy \
  && mamba clean -a -f -y \
  && printf '#!/bin/bash \n\
 \n\
-eval "$(mamba shell.posix hook)" \n\
+eval "$(conda shell.posix hook)" \n\
 exec "$@" \n\
 ' > "${CONDA_DIR}/bin/kernelstart.sh" \
  && chmod +x "${CONDA_DIR}/bin/kernelstart.sh" \
  && sed -i 's/\[/\[\"kernelstart.sh\",/g' \
     "${CONDA_DIR}/share/jupyter/kernels/python3/kernel.json" \
+ && JUPYTER_CONFIG_FILE="/home/${NB_USER}/.jupyter/jupyter_server_config.py" \
+ && if [[ -f "${JUPYTER_CONFIG_FILE}" ]] ; then \
+    echo "c.ServerApp.log_level = 40" >> "${JUPYTER_CONFIG_FILE}" ; \
+    fi \
  && fix-permissions "${CONDA_DIR}" \
  && fix-permissions "/home/${NB_USER}"
 
 USER ${NB_UID}
 
 # install RCT components
-RUN eval "$(mamba shell.posix hook)" \
+RUN eval "$(conda shell.posix hook)" \
  && pip install radical.pilot radical.entk radical.analytics \
  && pip install radical.asyncflow
 
@@ -59,4 +61,6 @@ RUN if [[ -f ./setup.sh ]] ; then \
 RUN if [[ -f ./environment.yml ]] ; then \
        mamba env update -n base -f ./environment.yml && rm environment.yml ; \
     fi
+
+RUN find /tutorials -name "*.ipynb" -exec jupyter trust {} \;
 
