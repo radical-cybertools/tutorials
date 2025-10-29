@@ -1,30 +1,38 @@
 
+# https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html
+ARG REGISTRY=quay.io
+ARG OWNER=jupyter
+# https://quay.io/repository/jupyter/minimal-notebook?tab=tags
+ARG IMAGE_TAG=python-3.11
 # https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope
 ARG BUILDPLATFORM=linux/amd64
-ARG PY_VER=3.9
 
-FROM --platform=${BUILDPLATFORM} jupyter/minimal-notebook:python-${PY_VER}
+FROM --platform=${BUILDPLATFORM} ${REGISTRY}/${OWNER}/minimal-notebook:${IMAGE_TAG}
 
 ARG TUTORIAL_NAME=default
+
 ENV JUPYTER_ENABLE_LAB=yes
+ENV JUPYTER_SERVERAPP_LOG_LEVEL=40
+ENV JUPYTER_DISABLE_FILE_VALIDATION=1
+ENV MAMBA_ROOT_PREFIX=${CONDA_DIR}
 
 USER root
 
 # system packages
 RUN apt-get update  -y && \
-    apt-get install -y curl gnupg jq sudo
+    apt-get install -y build-essential curl gnupg jq sudo
 
 # add user to sudoers
 RUN adduser ${NB_USER} sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/no_pass
 
 # config kernel(s)
-RUN conda update -n base -y libmambapy \
+RUN conda update -n base -y mamba libmamba libmambapy \
  && mamba update -n base -y -c conda-forge conda \
  && mamba clean -a -f -y \
  && printf '#!/bin/bash \n\
 \n\
-eval "$(conda shell.posix hook)" \n\
+eval "$(mamba shell.posix hook)" \n\
 exec "$@" \n\
 ' > "${CONDA_DIR}/bin/kernelstart.sh" \
  && chmod +x "${CONDA_DIR}/bin/kernelstart.sh" \
@@ -36,8 +44,9 @@ exec "$@" \n\
 USER ${NB_UID}
 
 # install RCT components
-RUN eval "$(conda shell.posix hook)" \
- && pip install radical.pilot radical.entk radical.analytics
+RUN eval "$(mamba shell.posix hook)" \
+ && pip install radical.pilot radical.entk radical.analytics \
+ && pip install radical.asyncflow
 
 # tutorials
 WORKDIR /tutorials/
