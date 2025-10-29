@@ -60,7 +60,7 @@ environment for a tutorial development.
 2. Run the basic container with the **mounted** tutorials source directory:
 
        docker run --rm -it -p 8888:8888 \
-                  --mount type=bind,source="$(pwd)/src",target=/tutorials \
+                  --mount type=bind,source="$(pwd)/src",target=/tutorials/local \
                   radicalcybertools/tutorials:devel
 
 3. Access Jupyter server with the provided URL 
