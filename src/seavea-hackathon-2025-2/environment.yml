@@ -3,6 +3,7 @@ channels:
 dependencies:
   - flux-core
   - flux-sched
+  - mpi4py
   - openmpi
   - pip
   - setuptools
