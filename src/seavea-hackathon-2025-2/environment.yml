@@ -17,4 +17,5 @@ dependencies:
       - git+https://github.com/radical-cybertools/ROSE.git@main
       - scikit-learn
       - cloudpickle
+      - dragonhpc
 
