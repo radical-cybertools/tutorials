@@ -15,6 +15,4 @@ dependencies:
       - git+https://github.com/radical-cybertools/radical.analytics.git@devel
       - git+https://github.com/radical-cybertools/radical.asyncflow.git@main
       - git+https://github.com/radical-cybertools/ROSE.git@main
-      - scikit-learn
-      - cloudpickle
 
