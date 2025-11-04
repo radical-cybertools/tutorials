@@ -23,16 +23,9 @@
         "agent_spawner"               : "FLUX",
         "launch_methods"              : {
                                          "order": ["FLUX"],
-                                         "FLUX" : { "pre_exec_cached" : [
-                "export FLUX_DIR=/home/merzky/projects/flux/install/",
-                "export PATH=$PATH:$FLUX_DIR/bin",
-                "export PYTHONPATH=$PYTHONPATH:$FLUX_DIR/lib/python3.12/site-packages/"
-                                         ]}},
-        "pre_bootstrap_0"             : [
-                "export FLUX_DIR=/home/merzky/projects/flux/install/",
-                "export PATH=\\$PATH:\\$FLUX_DIR/bin",
-                "export PYTHONPATH=\\$PYTHONPATH:\\$FLUX_DIR/lib/python3.12/site-packages/"
-                                        ],
+                                         "FLUX" : {}
+                                        },
+        "pre_bootstrap_0"             : [],
         "rp_version"                  : "installed",
         "virtenv_mode"                : "local",
         "python_dist"                 : "default",
@@ -40,45 +33,6 @@
         "gpus_per_node"               : 1,
         "fake_resources"              : true,
         "n_partitions"                : 1,
-        "system_architecture"         : {}
-    },
-
-    "flux_spack": {
-        "description"                 : "",
-        "notes"                       : "",
-        "default_schema"              : "local",
-        "schemas"                     : {
-            "ssh"                     : {
-                "job_manager_endpoint": "ssh://localhost/",
-                "filesystem_endpoint" : "sftp://localhost/"
-            },
-            "local"                   : {
-                "job_manager_endpoint": "fork://localhost/",
-                "filesystem_endpoint" : "file://localhost/"
-            }
-        },
-        "default_remote_workdir"      : "$HOME",
-        "resource_manager"            : "FORK",
-        "agent_config"                : "default",
-        "agent_scheduler"             : "FLUX",
-        "agent_spawner"               : "FLUX",
-        "launch_methods"              : {
-                                         "order": ["FLUX"],
-                                         "FLUX" : { "pre_exec_cached" : [
-                ". $HOME/j/spack/share/spack/setup-env.sh",
-                "spack load flux-core@0.73.0"
-                                         ]}},
-        "pre_bootstrap_0"             : [
-                ". $HOME/j/spack/share/spack/setup-env.sh",
-                "spack load flux-core@0.73.0"
-                                        ],
-        "rp_version"                  : "installed",
-        "virtenv_mode"                : "local",
-        "python_dist"                 : "default",
-        "cores_per_node"              : 8,
-        "gpus_per_node"               : 1,
-        "fake_resources"              : true,
-        "n_partitions"                : 2,
         "system_architecture"         : {}
     },
 
