@@ -6,7 +6,7 @@ TUTORIAL_URL_BASE="https://github.com/radical-cybertools"
 TUTORIAL_PATH="*/examples/tutorials/*"
 TUTORIAL_REPO=(\
  "radical.asyncflow/tarball/main" \
- "ROSE/tarball/feature/tutorial"
+ "ROSE/tarball/main"
 )
 
 for repo in "${TUTORIAL_REPO[@]}"; do
