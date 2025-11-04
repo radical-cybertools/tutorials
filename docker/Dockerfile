@@ -48,8 +48,7 @@ USER ${NB_UID}
 # install RCT components
 RUN eval "$(conda shell.posix hook)" \
  && pip install radical.pilot radical.entk radical.analytics \
- && pip install radical.asyncflow \
- && pip install dragonhpc
+ && pip install radical.asyncflow
 
 # tutorials
 WORKDIR /tutorials/
