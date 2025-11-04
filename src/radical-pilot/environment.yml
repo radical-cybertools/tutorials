@@ -1,6 +1,10 @@
 channels:
   - conda-forge
 dependencies:
+  - mpi4py
   - openmpi
   - openmpi-mpicc
+  - pip
+  - setuptools
+  - wheel
 

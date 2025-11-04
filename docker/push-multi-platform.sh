@@ -28,6 +28,8 @@ docker buildx create --use --name rct_builder
 docker buildx build \
     --output=type=registry \
     --platform linux/amd64,linux/arm64 \
+    --network=host \
+    --allow=network.host \
     -t "$TAG" \
     --build-arg TUTORIAL_NAME="$NAME"\
     -f "$RCT_BASE_DIR/docker/Dockerfile" \
